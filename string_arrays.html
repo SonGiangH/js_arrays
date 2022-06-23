@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript String Exercises</title>
+</head>
+<body>
+    <script>
+        // Viết hàm capitalize(str) nhận vào một chuỗi, trả về chuỗi chỉ viết hoa ký tự đầu tiên, tất cả
+        // ký tự khác viết thường, loại bỏ khoảng trắng ở 2 đầu nếu có
+
+        function capitalize(str) {
+            
+            let arrayStr = str.trim().split();
+
+            return (arrayStr.map(element => element.charAt(0).toUpperCase() + element.substring(1).toLowerCase())).toString();                
+            
+        }
+
+        console.log(capitalize("  hello world"))
+        console.log(capitalize("   javascript is fun   "))
+
+        // Viết hàm title(str) nhận vào một chuỗi, trả về chuỗi dạng viết hoa chữ cái đầu tiên của từng
+        // từ, những chữ cái khác phía sau viết thường, lưu ý loại bỏ phần khoảng trắng ở 2 đầu nếu có.
+
+        function title(str) {
+            let arrayStr = str.trim().split(" ")
+
+            return (arrayStr.map(element => element.charAt(0).toUpperCase() + element.substring(1).toLowerCase())).toString();
+        }
+
+        console.log(title("hello world"));
+        console.log(title(" ba nGuyỄn "));
+
+        // Viết hàm protectEmail(email) nhận vào một chuỗi là địa chỉ email, trả về chuỗi email dạng
+        // rút gọn, chỉ hiển thị 2 ký tự đầu và thay thế các ký tự khác trước @ dấu ...
+        function protectEmail(email) {
+            let arrayEmail = email.trim().split("@");
+
+            let firstElement = arrayEmail[0].split();
+
+            let regex = /.*/; 
+
+            firstElement = firstElement.map(element => element.substring(0,2) + element.substr(2).replace(regex,"..."));
+
+            return firstElement.concat("@").concat(arrayEmail[1]).join('').toString();
+        }
+
+        console.log(protectEmail("banx9x@gmail.com"))
+        console.log(protectEmail("phoebedo@gmail.com"))
+
+        // Viết hàm reverse(str) nhận vào một chuỗi, trả về chuỗi đảo ngược tất cả ký tự
+
+        function reverse(str) {
+            let arrayStr = str.trim().split("");
+
+            return arrayStr.reverse().join("");
+        }
+
+        console.log(reverse("hello"))
+        console.log(reverse("béo ú"))
+
+        // Viết hàm countVowel(str) nhận vào một chuỗi, trả về số ký tự nguyên âm có trong chuỗi, các
+        // ký tự nguyên âm là aeiou
+
+        function countVowel(str) {
+            // Sử dụng regular expression với nhóm nguyên âm aeiou với global flag
+            let regex = /([aeiou])/g;
+
+            return str.match(regex).length;
+        }
+
+        console.log(countVowel("hello"))
+
+        // Viết hàm reverseWords(str) nhận vào một chuỗi, trả về chuỗi đảo ngược thứ tự các từ
+        // (không phải toàn bộ ký tự)
+        function reverseWords(str) {
+            let arrayStr = str.trim().split(" ");
+
+            return arrayStr.reverse().join(" ");
+        }
+
+        console.log(reverseWords("The fox is coming for the chicken"))
+
+        // Viết hàm randomHex() trả về một giá trị màu HEX ngẫu nhiên, mã màu HEX là hệ cơ số 16 (0-
+        // 9a-f) và có dạng #00ffaa
+        function randomHex() {
+
+            // using regulare expression replace "0" with random number below 16
+            let regex = /0/g;
+
+            function randomNumber16() {
+                return (Math.floor((Math.random()*16))).toString(16);                            
+            }
+
+            return "#000000".replace(/0/g, randomNumber16);
+        }
+        console.log(randomHex());
+
+        // Viết hàm parameterize(str) nhận vào một chuỗi bất kỳ (chỉ chứa các từ không dấu), trả về
+        // chuỗi dạng url dạng viết thường và các từ được nối bằng các dấu -
+        function parameterize(str) {
+            let arrayStr = str.trim().split(" ");
+
+            return arrayStr.map(array => array.toLowerCase()).join("-");
+        }
+
+        console.log(parameterize("Hello World"));
+        console.log(parameterize(" javascript is very funny "));
+
+        // Viết hàm isPalindrome(str) nhận vào một chuỗi bất kỳ, kiểm tra và trả về kết quả chuỗi gốc
+        // và chuỗi đảo ngược có giống nhau hay không, không phân biệt hoa thường và không tính dấu
+        //khoảng trắng
+        function isPalindrome(str) {
+            // using regular expression single whitespace /s/ with global flag
+            let regex = /\s/g;
+
+            str = str.replace(regex,'').toLowerCase();
+
+            let arrayStr = str.split('');
+            let reverseArray = arrayStr.slice().reverse();
+            let reverseStr = reverseArray.join('');
+
+            if (str === reverseStr) return true;
+            return false;            
+        }
+        
+        console.log(isPalindrome("  Race car"))
+        console.log(isPalindrome("Ba"))
+
+        //Intermidate
+        // Viết hàm mostCommonCharacter(str) tìm và trả về ký tự xuất hiện nhiều lần nhất trong
+        // chuỗi, nếu có nhiều ký tự có số lần xuất hiện giống nhau thì trả về ký tự đứng trước theo bảng
+        // alphabe
+        
+        function mostCommonCharacter(str) {
+            let result = [];
+
+            //remove all whitespace characters, and lowering case all characters
+            let regex = /\s/g;
+
+            str = str.replace(regex,'').toLowerCase();
+
+            let arrayStr = str.split('');           
+
+            let count ={};
+            
+            // forEach function to count all the duplicate element in result
+            arrayStr.forEach((c) => {count[c] = (count[c] || 0) + 1});
+
+            for (let k in count) {
+                if (count[k] == 1) {
+                    delete count[k];
+                }
+            }
+            return count;
+        }
+
+        console.log(mostCommonCharacter("Hello WorLdo"));
+        console.log(mostCommonCharacter("Ba Nguyen"));       
+
+        // Viết hàm sortByName(arr) nhận vào một mảng các objects có tên học viên, trả về một mảng
+        // mới được sắp xếp theo tên (từ cuối cùng trong tên) theo thứ tự alphabe
+
+        let students = [
+            { name: "Hoàng Thị Ngọc Linh", point: 0 },
+            { name: "Bùi Lan Nhi", point: 0 },
+            { name: "Nguyễn Ba", point: 10 }
+        ];
+
+        // function sortByName(arr) {
+        //     arr.sort((a, b) => (
+        //         reverseWords(b.name.toLowerCase()) - reverseWords(a.name.toLowerCase()) )
+        //         );
+
+        //     return arr.sort();
+        // }
+
+        function sortByName(arr) {
+
+            students.sort(function (a, b) {
+                if (reverseWords(a.name.toLowerCase()) < reverseWords(b.name.toLowerCase())) return -1;
+                else if (reverseWords(a.name.toLowerCase()) > reverseWords(b.name.toLowerCase())) return 1;
+                else return 0;
+            })
+
+            return students.sort();
+        }
+
+        console.log(sortByName(students));
+
+    </script>
+</body>
+</html>

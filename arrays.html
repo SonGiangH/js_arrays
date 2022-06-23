@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrays</title>
+</head>
+<body>
+    <script>
+        let arr = ["Linh", "Nhi", "Hùng", "Hà", "Mai Anh"];
+
+        console.log(arr);
+
+        // Viết câu lệnh in ra độ dài (số lượng phần tử) của arr
+        console.log(arr.length);
+
+        // VIết câu lệnh in ra phần tử đầu tiên trong mảng (index = 0)
+        console.log(arr[0]);
+
+        // Viết câu lệnh in ra phần tử thứ 3 trong mảng (index = 2)
+        console.log(arr[2]);
+
+        // Viết câu lệnh in ra phần tử cuối cùng của mảng (index = arr.length - 1)
+        console.log(arr[arr.length - 1]);
+
+        // Viết câu lệnh in ra phần tử có index = -1, chú ý kết quả
+        console.log(arr[-1]);   // undefined vì không tồn tại phần tử ở index = -1
+
+        // Sử dụng vòng lặp in ra từng giá trị trong arr
+        for (let i of arr) {
+            console.log(i);
+        }
+
+        // Sử dụng vòng lặp in ra giá trị và chỉ mục tương ứng trong arr
+        for (let i =0; i < arr.length; i++) {
+            console.log(`${i} : ${arr[i]}`);
+        }
+
+        // Sử dụng vòng lặp in ra giá trị và chỉ mục tương ứng trong arr theo chiều từ cuối mảng về đầu mảng
+        for (let i = arr.length - 1; i >= 0; i--) {
+            console.log(`${i} : ${arr[i]}`);
+        }
+
+        // Viết câu lệnh thêm "Ba" cuối mảng sử dụng phương thưc  push()
+        arr.push("Ba");
+        console.log(arr);
+
+        // Viết câu lệnh thêm "Thảo" vào cuối mảng không sử dụng phương thức push()
+        arr.splice(arr.length,0,"Thảo");
+        console.log(arr)
+
+        // Viết câu lệnh thêm "Béo Ú" vào vị trí đầu tiên trong mảng sử dụng phương thức unshift()
+        arr.unshift("Béo Ú");
+        console.log(arr);
+
+        // Viết câu lệnh xóa phần tử ở vị trí cuối cùng của mảng sử dụng phương thức pop()
+        arr.pop();
+        console.log(arr);
+
+        // Viết câu lệnh sao chép 2 phần tử đầu tiên sử dụng phương thức slice()
+        let sliceArr = arr.slice(0, 2);
+        console.log(sliceArr);
+
+        // Viết câu lệnh xóa phần tử ở vị trí đầu tiên trong mảng sử dụng phương thức shift()
+        arr.shift();
+        console.log(arr);
+
+        // Viết câu lệnh sao chép 3 phần tử cuối cùng của mảng sử dụng phương thức slice()
+        console.log(arr.slice(3));
+
+        // Viết câu lệnh xóa 2 phần tử thứ 2 và 3 ("Nhi" và "Hùng") khỏi mảng
+        arr.splice(1,2);
+        console.log(arr);
+
+        // Viết câu lệnh thêm lại "Nhi" và "Hùng" vào vị trí thứ 2 và 3
+        arr.splice(2,0, "Nhi", "Hùng" );
+        console.log(arr);
+
+        // Viết câu lệnh để nối mảng ["Hồng Anh", "Bách"] vào cuối mảng arr sử dụng phương thức concat(), 
+        // chú ý mảng arr phải thay đổi sau khi nối
+        arr = arr.concat(["Hồng Anh", "Bách"]);
+        console.log(arr)
+
+        // Viết câu lệnh để nối mảng ["Vinh", "Huy"] vào đầu mảng arr sử dụng phương thức
+        // concat(), chú ý mảng arr phải thay đổi sau khi nối
+        arr = ["Vinh", "Huy"].concat(arr);
+        console.log(arr);
+
+        // Viết câu lệnh tìm và in ra chỉ mục của "Ba" ra console
+        // for (let i = 0; i < arr.length; i++) {
+        //     if (arr[i] == "Ba") {
+        //         console.log(`Ba index : ${i}`);
+        //     }
+        // }
+        console.log(arr.indexOf("Ba"));
+
+        // Viết câu lệnh tìm và in ra chỉ mục của "Thảo" ra console, chú ý kết quả
+        console.log(arr.indexOf("Thảo"));  // -1 is not found
+
+        // Viết câu lệnh kiểm tra "Mai Anh" có trong mảng arr hay không sử dụng phương thức
+        // includes() và in ra kết quả
+        console.log(arr.indexOf("Mai Anh"));
+
+        // Viết câu lệnh in arr ra console dưới dạng chuỗi sử dụng phương thức toString()
+        console.log(arr.toString());
+
+        // Viết câu lệnh nối các tên trong mảng thành một chuỗi duy nhất dạng "Vinh-Huy-Linh-...-
+        // Hồng Anh-Bách" sử dụng phương thức join() và in ra console
+        console.log(arr.join("-"));
+
+        // Viết câu lệnh đảo ngược các giá trị trong mảng arr sử dụng phương thức reverse().
+        console.log(arr.reverse());
+        // Viết câu lệnh đổi chỗ 2 phần tử đầu và cuối mảng
+        let lastChar = arr[arr.length - 1];
+
+        arr.splice(arr.length -1,1, arr[0]);
+        arr.splice(0,1,lastChar);
+        
+        console.log(arr);
+        // Viết câu lệnh xóa toàn phần tử trong mảng
+        arr.splice(0);
+        console.log(arr);
+        // Viết câu lệnh điền 10 phần tử có giá trị ngẫu nhiên vào mảng (sử dụng phương thức fill(),Math.random())
+        for (let i=0; i<10; i++) {
+            arr[i] = Math.floor(10 * Math.random());
+        }
+        console.log(arr);
+
+        // Viết câu lệnh sao chép toàn bộ phần tử của mảng sử dụng phương thức slice()
+        let newArray2 = arr.slice();
+        console.log(newArray2);
+
+        
+        
+    </script>
+</body>
+</html>

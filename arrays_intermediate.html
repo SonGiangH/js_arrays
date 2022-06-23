@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Viết hàm max(arr) nhận vào một mảng các số, tìm và trả về số lớn nhất
+        let arr = [1, 5, 3, 4, 2];
+
+        function max(arr) {
+            let max = arr[0];
+        for (let i = 1; i < arr.length; i++) {
+            if (arr[i] > max) {
+                max = arr[i];
+            }
+        }
+            console.log(`số lớn nhất của mảng là:`+max);
+        }
+
+        max(arr);
+
+        // Viết hàm minMax(arr) nhận vào một mảng các số, tìm ra số nhỏ nhất và lớn nhất trong mảng,
+        // sau đó trả về kết quả là một mảng mới chứa 2 giá trị [min, max]
+
+        function minMax(arr) {
+            let max = arr[0];
+            let min = arr[0];
+
+            for (let i = 1; i < arr.length; i++) {
+                if (arr[i] > max) {
+                    max = arr[i];
+                }
+                
+                if (arr[i] < min) {
+                    min = arr[i]
+                }
+                return [min, max];
+            }
+        }
+        console.log(minMax([5, 1, 3, 4, 2]));
+
+        // Viết hàm avg(arr) nhận vào một mảng các số, tính trung bình cộng các số và trả về kết quả
+        function avg(arr) {
+            let result;
+            let sum = 0;
+            for (let i = 1; i < arr.length; i++) {
+                sum += arr[i];
+            }
+            return result = sum / arr.length;
+        }
+
+        console.log(avg([1, 5, 3, 4, 2]));
+
+        // Viết hàm swap(arr, x, y) nhận vào một mảng các số và 2 số x, y tương ứng với 2 chỉ mục
+        // trong mảng, đổi chỗ vị trí 2 phần tử tương ứng, trả về kết quả là mảng arr đã thay đổi, lưu ý
+        // mảng arr phải thay đổi sau khi gọi hàm swap()
+
+        function swap(arr, x, y) {
+            let a = arr[x];
+            let b = arr[y];
+
+            arr.splice(x,1,b);
+            arr.splice(y,1,a);
+
+            return arr;            
+        }
+
+        const arr1 = [1, 5, 3, 4, 2];
+
+        console.log(arr1);
+        console.log(swap(arr1,0,2));
+
+        // Viết hàm secondLargest(arr) nhận vào một mảng arr, tìm và trả về kết quả là số lớn thứ 2
+        // trong mảng, lưu ý mảng có thể chứa nhiều số trùng nhau
+        function secondLargest(arr) {
+            let high1 = arr[0];
+            let high2 = -Infinity;
+            
+            for (let i = 1; i < arr.length; i++) {
+                if (arr[i] > high1) {
+                    high2 = high1;
+                    high1 = arr[i];
+                } else if ( arr[i] > high2 && arr[i] < high1) {
+                    high2 = arr[i];
+                }             
+            }
+            return high2;          
+        }
+
+        console.log(`Second Max: `+secondLargest([1, 5, 5, 3, 4, 2]));
+
+        // Viết hàm mix(arr1, arr2) nhận vào 2 mảng bất kỳ, thực hiện trộn (kết hợp) 2 mảng vào nhau
+        // và trả về kết quả là một mảng mới chứa các phần tử đã trộn
+
+        function mix(arr1, arr2) {
+            
+            let mixArray = [];  
+            
+            let maxLength = Math.max(arr1.length, arr2.length);
+
+            for (let i = 0; i < maxLength; i++) {
+
+                mixArray.push(arr1[i]);
+                mixArray.push(arr2[i]);
+            } ;
+
+            for (let i = 0; i < mixArray.length; i++) {
+                if (mixArray[i] == undefined) {
+                    mixArray.splice(i, 1);
+                } 
+            } 
+            return mixArray;
+        }
+
+        console.log(mix([1, 2, 3, 5], [4, 5, 6]));
+
+        // Viết hàm shuffle(arr) nhận vào một mảng chứa các giá trị bất kỳ, thực hiện xáo trộn ngẫu
+        // nhiên vị trí các phần tử trong mảng và trả về kết quả là mảng đã xáo trộn, lưu ý mảng arr phải
+        // thay đổi sau khi gọi hàm
+
+        function shuffle(arr) {
+
+            for (let i = 0; i < arr.length; i++) {
+
+                let random = Math.floor(Math.random() * arr.length);
+                
+                //swap value arr[i] ( giá trị ở vị trí i) và arr[random] (vị trí bất kì) 
+                let temp = arr[random];
+                arr[random] = arr[i];
+                arr[i] = temp;
+            }
+            return arr;
+        }
+
+        console.log(`shuffle array: `+ shuffle([1,2,3,4,10]))
+
+        // Viết hàm intersection(arr1, arr2) nhận vào 2 mảng bất kỳ, trả về kết quả là một mảng
+        // mới chứa toàn bộ phần tử xuất hiện trong cả 2 mảng đó
+        
+        function intersection(arr1, arr2) {
+
+            let result = [];
+
+            for (let i = 0; i < arr1.length; i++) {
+
+                for (let j = 0; j < arr2.length; j++) {
+
+                    if (arr1[i] == arr2[j] ) {
+
+                        result.push(arr1[i]);
+
+                        break;
+                    }
+                }
+            }
+
+            console.log(`do dai cua result : ${result.length}`);
+            return result;
+        }
+
+        console.log(intersection([1, 2, 3, 4, 12], [12, 5, 6, 7,12]))
+
+        // Viết hàm difference(arr1, arr2) nhận vào 2 mảng bất kỳ, trả về kết quả là một mảng mới
+        // chứa toàn bộ phần tử chỉ xuất hiện ở 1 trong 2 mảng
+
+        function difference (arr1, arr2) {
+
+            let result = [];
+            let difference =[];
+            
+            // set boolean cho cac phan tu trong result
+            for (let i = 0; i < arr1.length; i++) {
+
+                result[arr1[i]] = true;
+            }
+
+            // so sanh cac phan tua cua arr2 voi result
+            for (let i = 0; i < arr2.length; i++) {
+
+                if (result[arr2[i]]) {
+
+                    delete result[arr2[i]];
+
+                } else (result[arr2[i]] = true)
+            }
+
+            for (let k in result) {
+
+                difference.push(k);
+            }
+
+            console.log(`do dai cua difference : ${difference.length}`);
+            console.log(result);
+
+            return difference;
+        }       
+        console.log(difference([1, 2, 3], [2, 4, 5]))
+
+        // Viết hàm removeDuplicate(arr) nhận vào 1 mảng bất kỳ, trả về kết quả là một mảng mới
+        // chứa các giá trị duy nhất (unique - không chứa các giá trị trung lặp) của mảng
+
+        function removeDuplicate(arr) {
+
+            let result = [];
+            let unique = [];
+            let arr1 = arr.slice(0, arr.length / 2);
+            let arr2 = arr.slice(arr.length/2, arr.length);
+
+            console.log(arr1);
+            console.log(arr2);
+
+            for (let i =0; i < arr1.length; i++) {
+
+                result[arr1[i]] = true;
+            }
+
+            // so sanh cac gia tri cua arr voi result
+            for (let i = 0; i <arr2.length; i++) {
+                if (result[arr2[i]]) {
+
+                    //xoa phan tu o arr2 thay vi xoa phan tu o mang result
+                    delete arr2[i];
+
+                } else result[arr2[i]] =true;
+            }
+
+            for (let k in result) {
+                unique.push(k)
+            }
+
+            return unique;
+        }
+
+        console.log(removeDuplicate([1, 2, 5, 2, 3, 1, 3]));
+
+        // Viết hàm filterRange(arr, a, b) nhận vào một mảng số, trả về kết quả là một mảng mới
+        // chỉ chứa các số lớn hơn hoặc bằng a và nhỏ hơn hoặc bằng b (a nhỏ hơn b), gợi ý sử dụng
+        // phương thức filter()
+
+        const arrA = [5, 3, 8, 1];      
+
+        function filterRange(arr, a, b) {
+
+                return arr.filter(value => value >=a && value <=b);
+        }
+
+        console.log(`filterRange`)
+
+        console.log(filterRange(arrA, 1, 4));
+           
+
+        // Viết hàm getNames(users) nhận vào một mảng các object, mỗi object có thông tin tên và tuổi,
+        // trả về một mảng mới chỉ chứa tên, gợi ý sử dụng phương thức map()
+        const users = [
+            { name: "John", age: 25 },
+            { name: "Mary", age: 28 },
+            { name: "Pete", age: 30 }
+        ];
+
+        function getNames(users) {
+            let mapUser = users.map(user => user.name);
+
+            return mapUser;
+        }
+
+        console.log(getNames(users));        
+
+        // Viết hàm mapFullname(users) nhận vào một mảng các object, mỗi object có thông tin tên, tên
+        // đầy đủ (tên + tên đệm), gợi ý sử dụng phương thức map()
+        // đệm và id , trả về một mảng mới chứa các object tương tự, thay thế tên và tên đệm thành tên
+
+        const users2 = [
+            { name: "Pete", surname: "Hunt", id: 2 },
+            { name: "John", surname: "Smith", id: 1 },
+            { name: "Mary", surname: "Key", id: 3 }
+        ];
+
+        function mapFullName(users) {
+
+            let mapUser = users.map(user => ({
+                "fullName": user.name + " " + user.surname,
+                id: user.id
+            }));
+
+            return mapUser;
+        }
+
+        console.log(mapFullName(users2));
+
+        // Viết hàm greaterThan(users, age) nhận vào một mảng các object, mỗi object có thông tin
+        // tuổi lớn hơn hoặc bằng age, gợi ý sử dụng phương thức filter()
+        // tên và tuổi, và age là một số nguyên dương bất kỳ, trả về một mảng mới chỉ chứa các object có
+        // tuổi lớn hơn hoặc bằng age, gợi ý sử dụng phương thức filter()
+
+        const users3 = [
+            { name: "Pete", age: 30 },
+            { name: "John", age: 25 },
+            { name: "Mary", age: 28 }
+        ];
+
+        function greaterThan(users, age) {
+            let filterUsers = users.filter(user => user.age >= age)
+
+            console.log(filterUsers);
+        }
+
+        greaterThan(users3, 29);
+
+        // Viết hàm avgAge(users) nhận vào một mảng các object, mỗi object có thông tin tên và tuổi,
+        // tính tuổi trung bình và trả về kết quả, gợi ý sử dụng phương thức reduce()
+
+        const users4 = [
+            { name: "Mary", age: 28 },
+            { name: "John", age: 25 },
+            { name: "Pete", age: 30 },
+        ];
+
+        function avgAge(users) {
+
+            let averageAge = users.reduce((sum, user) => (sum + user.age), 0) / users.length;
+            
+            console.log(users.length);
+            console.log(averageAge);
+        }
+        avgAge(users4);
+
+        // Viết hàm sortUsersByAge(users) nhận vào một mảng các object, mỗi object có thông tin tên
+        // và tuổi, sắp xếp users theo độ tuổi giảm dần và trả về kết quả, lưu ý mảng users phải thay đổi
+        // sau khi gọi hàm, gợi ý sử dụng phương thức sort()
+
+        const users5 = [
+            { name: "Pete", age: 30 },
+            { name: "John", age: 25 },
+            { name: "Mary", age: 28 }
+        ];
+
+        function sortUsersByAge(users) {
+            // users.sort((a, b) => {
+            //     if (a.age < b.age) return 1;
+            //     if (a.age > b.age) return -1;
+            //     return 0;
+            // })
+
+            users.sort((a, b) => (b.age-a.age))
+
+            console.log(users);
+        }
+
+        sortUsersByAge(users5);
+
+        // filter arr chia hết cho 2
+        const arr2 = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+
+        console.log(arr2.reduce((total, n) => total * n))
+
+        arr2.sort((a, b) => (b-a));  // a > b thì a - b là 1 số dương, thì nó sẽ đổi chỗ; a < b thì a - b là 1 số âm thì nó sẽ không đổi chỗ
+        
+        console.log(arr2);
+    </script>
+</body>
+</html>
